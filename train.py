@@ -52,24 +52,24 @@ dataset = dataset.shuffle(len(df)).batch(32)
 # Load model
 model = TFBertForSequenceClassification.from_pretrained('indobenchmark/indobert-base-p2', num_labels=len(df['label'].unique()))
 
-# # Define custom training step function
-# @tf.function
-# def train_step(model, inputs, labels):
-#     with tf.GradientTape() as tape:
-#         outputs = model(inputs, training=True)
-#         loss = tf.keras.losses.sparse_categorical_crossentropy(labels, outputs.logits, from_logits=True)
-#     gradients = tape.gradient(loss, model.trainable_variables)
-#     optimizer.apply_gradients(zip(gradients, model.trainable_variables))
-#     return loss
+# Define custom training step function
+@tf.function
+def train_step(model, inputs, labels):
+    with tf.GradientTape() as tape:
+        outputs = model(inputs, training=True)
+        loss = tf.keras.losses.sparse_categorical_crossentropy(labels, outputs.logits, from_logits=True)
+    gradients = tape.gradient(loss, model.trainable_variables)
+    optimizer.apply_gradients(zip(gradients, model.trainable_variables))
+    return loss
 
-# # Compile and train the model
-# optimizer = tf.keras.optimizers.Adam()
+# Compile and train the model
+optimizer = tf.keras.optimizers.Adam()
 
-# for epoch in range(3):
-#     for batch in dataset:
-#         inputs, labels = batch
-#         loss = train_step(model, inputs, labels)
-#     print(f"Epoch {epoch + 1} completed")
+for epoch in range(3):
+    for batch in dataset:
+        inputs, labels = batch
+        loss = train_step(model, inputs, labels)
+    print(f"Epoch {epoch + 1} completed")
 
-# # Save the model
-# model.save_pretrained('indobert_model')
+# Save the model
+model.save_pretrained('indobert_model')
