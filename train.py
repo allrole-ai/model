@@ -2,60 +2,55 @@ import tensorflow as tf
 from transformers import TFBertForSequenceClassification, BertTokenizer
 import pandas as pd
 
-def load_data(file_path, delimiter='|', encoding='utf-8'):
-    try:
-        df = pd.read_csv(file_path, delimiter=delimiter, encoding=encoding, on_bad_lines='skip')
-        print(df.head())  # Display the first few rows to check the format
-    except pd.errors.ParserError as e:
-        print(f"Error reading CSV file: {e}")
-        # Display the first few lines of the file to help with debugging
-        with open(file_path, 'r', encoding=encoding) as file:
-            for i in range(5):
-                print(file.readline())
-        raise
-    except UnicodeDecodeError as e:
-        print(f"Encoding error: {e}")
-        # Display the first few lines of the file to help with debugging
-        with open(file_path, 'r', encoding='iso-8859-1') as file:
-            for i in range(5):
-                print(file.readline())
-        raise
-    
-    # Check if the dataframe is loaded correctly
-    print("Dataframe loaded successfully with shape:", df.shape)
+# Load the dataset with correct delimiter and encoding
+try:
+    df = pd.read_csv('dataset/qa.csv', delimiter='|', encoding='utf-8', on_bad_lines='skip')
+    print(df.head())  # Display the first few rows to check the format
+except pd.errors.ParserError as e:
+    print(f"Error reading CSV file: {e}")
+    # Display the first few lines of the file to help with debugging
+    with open('qa.csv', 'r', encoding='utf-8') as file:
+        for i in range(5):
+            print(file.readline())
+    raise
+except UnicodeDecodeError as e:
+    print(f"Encoding error: {e}")
+    # Display the first few lines of the file to help with debugging
+    with open('qa.csv', 'r', encoding='iso-8859-1') as file:
+        for i in range(5):
+            print(file.readline())
+    raise
 
-    # Convert answers to numeric labels
-    df['label'] = df['answer'].astype('category').cat.codes
+# Check if the dataframe is loaded correctly
+print("Dataframe loaded successfully with shape:", df.shape)
 
-    # Remove rows with invalid labels
-    df = df[df['label'] >= 0]
+# Convert answers to numeric labels
+df['label'] = df['answer'].astype('category').cat.codes
 
-    labels = tf.constant(df['label'].values)
+# Remove rows with invalid labels
+df = df[df['label'] >= 0]
 
-    # Prepare the dataset
-    tokenizer = BertTokenizer.from_pretrained('indobenchmark/indobert-base-p2')
-    input_ids = []
-    attention_masks = []
+labels = tf.constant(df['label'].values)
 
-    for question in df['question']:
-        encoded = tokenizer.encode_plus(question, add_special_tokens=True, max_length=64, truncation=True, padding='max_length', return_attention_mask=True)
-        input_ids.append(encoded['input_ids'])
-        attention_masks.append(encoded['attention_mask'])
+# Prepare the dataset
+tokenizer = BertTokenizer.from_pretrained('indobenchmark/indobert-base-p2')
+input_ids = []
+attention_masks = []
 
-    input_ids = tf.constant(input_ids)
-    attention_masks = tf.constant(attention_masks)
+for question in df['question']:
+    encoded = tokenizer.encode_plus(question, add_special_tokens=True, max_length=64, truncation=True, padding='max_length', return_attention_mask=True)
+    input_ids.append(encoded['input_ids'])
+    attention_masks.append(encoded['attention_mask'])
 
-    # Convert to TensorFlow Dataset
-    dataset = tf.data.Dataset.from_tensor_slices(({"input_ids": input_ids, "attention_mask": attention_masks}, labels))
-    dataset = dataset.shuffle(len(df)).batch(32)
+input_ids = tf.constant(input_ids)
+attention_masks = tf.constant(attention_masks)
 
-    return dataset, len(df['label'].unique())
-
-# Load the dataset
-dataset, num_labels = load_data('dataset/qa.csv')
+# Convert to TensorFlow Dataset
+dataset = tf.data.Dataset.from_tensor_slices(({"input_ids": input_ids, "attention_mask": attention_masks}, labels))
+dataset = dataset.shuffle(len(df)).batch(32)
 
 # Load model
-model = TFBertForSequenceClassification.from_pretrained('indobenchmark/indobert-base-p2', num_labels=num_labels)
+model = TFBertForSequenceClassification.from_pretrained('indobenchmark/indobert-base-p2', num_labels=len(df['label'].unique()))
 
 # Define custom training step function
 @tf.function
