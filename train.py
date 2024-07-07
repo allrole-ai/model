@@ -4,7 +4,7 @@ import pandas as pd
 
 # Load the dataset with correct delimiter and encoding
 try:
-    df = pd.read_csv('qa.csv', delimiter='|', encoding='utf-8', on_bad_lines='skip')
+    df = pd.read_csv('dataset/qa.csv', delimiter='|', encoding='utf-8', on_bad_lines='skip')
     print(df.head())  # Display the first few rows to check the format
 except pd.errors.ParserError as e:
     print(f"Error reading CSV file: {e}")
