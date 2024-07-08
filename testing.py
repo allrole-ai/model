@@ -9,7 +9,7 @@ tokenizer = BertTokenizer.from_pretrained('indobert_model')
 model = TFBertForSequenceClassification.from_pretrained('indobert_model')
 
 # Load the label encoder
-with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
+with open('dataset/dataset-a.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if len(row) == 2]
 
