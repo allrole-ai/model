@@ -4,7 +4,7 @@ import re
 # Daftar simbol yang akan dihapus
 symbols_to_remove = [
     "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "=", "[", "]",
-    "{", "}", ";", ":", "'", "|", ",", ".", "<", ">", "/", "?", "\n"
+    "{", "}", ";", ":", "'", "|", ",", ".", "<", ">", "/", "?", "\\", "\n"
 ]
 
 # Membuat pola regex untuk menghapus simbol-simbol tersebut
@@ -14,8 +14,8 @@ def clean_text(text):
     """Membersihkan teks dari simbol-simbol yang tidak diinginkan."""
     return pattern.sub('', text)
 
-input_file = 'dataset\dataset-a.csv'
-output_file = 'dataset\qa-dataset.csv'
+input_file = 'dataset/dataset-a.csv'
+output_file = 'dataset/qa-dataset.csv'
 
 with open(input_file, 'r', encoding='utf-8') as infile, open(output_file, 'w', encoding='utf-8', newline='') as outfile:
     reader = csv.reader(infile, delimiter='|')
@@ -28,4 +28,4 @@ with open(input_file, 'r', encoding='utf-8') as infile, open(output_file, 'w', e
         else:
             print(f"Baris tidak valid: {row}")
 
-print("File CSV telah dibersihkan dan disimpan sebagai 'qa_cleaned.csv'")
+print("File CSV telah dibersihkan dan disimpan sebagai 'qa-dataset.csv'")
