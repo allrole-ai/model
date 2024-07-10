@@ -13,3 +13,6 @@ pattern = re.compile(f"[{''.join(re.escape(symbol) for symbol in symbols_to_remo
 def clean_text(text):
     """Membersihkan teks dari simbol-simbol yang tidak diinginkan."""
     return pattern.sub('', text)
+
+input_file = 'dataset\dataset-a.csv'
+output_file = 'dataset\qa-dataset.csv'
