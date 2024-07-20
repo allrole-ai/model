@@ -61,3 +61,10 @@ trainer = Trainer(
     tokenizer=tokenizer,
     data_collator=data_collator,
 )
+
+# make Training the model
+trainer.train()
+
+#Saves the model & tokenizer
+model.save_pretrained("./model")
+tokenizer.save_pretrained("./model")
