@@ -8,12 +8,6 @@ import os
 import re
 from tqdm import tqdm
 
-# Fungsi untuk memuat data dengan progress bar
-def load_data(filepath):
-    tqdm.pandas(desc="Loading data")
-    data = pd.read_csv(filepath, delimiter='|')
-    data['id'] = data.index
-    return data
 
 # Fungsi untuk memuat stopword dengan progress bar
 def load_stopwords(filepath):
