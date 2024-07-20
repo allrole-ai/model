@@ -1,6 +1,6 @@
 import pandas as pd
 import csv
-from transformers import RobertaTokenizer, RobertaForSequenceClassification, Trainer, TrainingArguments, DataCollatorWithPadding
+from transformers import AlbertTokenizer, AlbertForSequenceClassification, Trainer, TrainingArguments, DataCollatorWithPadding
 from sklearn.model_selection import train_test_split
 from datasets import Dataset
 import torch
@@ -18,3 +18,6 @@ train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 train_dataset = Dataset.from_pandas(train_df)
 test_dataset = Dataset.from_pandas(test_df)
 
+# Load tokenizer and model
+tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
+model = AlbertForSequenceClassification.from_pretrained('albert-base-v2')
