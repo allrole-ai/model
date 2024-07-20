@@ -9,12 +9,6 @@ import re
 from tqdm import tqdm
 
 
-# Fungsi untuk memuat stopword dengan progress bar
-def load_stopwords(filepath):
-    tqdm.pandas(desc="Loading stopwords")
-    with open(filepath, 'r') as file:
-        stopwords = file.read().splitlines()
-    return stopwords
 
 # Fungsi untuk membersihkan teks dengan progress bar
 def preprocess_text(text, stopwords):
