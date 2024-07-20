@@ -11,10 +11,6 @@ from tqdm import tqdm
 
 
 
-# Membagi data menjadi training dan testing
-print("Splitting data...")
-X_train, X_test, y_train, y_test = train_test_split(X, data['answer'], test_size=0.2, random_state=42)
-
 # Menggunakan GridSearchCV untuk mencari hyperparameter terbaik
 print("Training model...")
 param_grid = {
