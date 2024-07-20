@@ -10,9 +10,6 @@ from tqdm import tqdm
 
 
 
-# Memuat stopword dari file
-stopwords = load_stopwords('stopword/id-stopword.txt')
-
 # Preprocess pertanyaan dan jawaban dengan progress bar
 tqdm.pandas(desc="Preprocessing text")
 data['question'] = data['question'].progress_apply(lambda x: preprocess_text(x, stopwords))
