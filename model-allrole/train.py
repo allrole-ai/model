@@ -6,7 +6,7 @@ from datasets import Dataset
 import torch
 
 # load dataset train
-df = pd.read_csv('lar-clean.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
+df = pd.read_csv(f'dataset/qa.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
 
 # Buat label biner (0 atau 1) dari data jawaban jika perlu
 df['label'] = df.index % 2  # For example, using indexes as temporary labels
