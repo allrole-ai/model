@@ -9,12 +9,7 @@ import re
 from tqdm import tqdm
 
 
-)
 
-# Membuat vectorizer dan menyesuaikan dengan data
-vectorizer = TfidfVectorizer()
-print("Fitting vectorizer...")
-X = vectorizer.fit_transform(tqdm(data['question'], desc="Fitting vectorizer"))
 
 # Membagi data menjadi training dan testing
 print("Splitting data...")
