@@ -10,13 +10,6 @@ from tqdm import tqdm
 
 
 
-
-
-grid_search = GridSearchCV(RandomForestClassifier(), param_grid, cv=3, scoring='accuracy', n_jobs=-1)
-grid_search.fit(X_train, y_train)
-
-best_model = grid_search.best_estimator_
-
 # Prediksi pada data test
 print("Predicting...")
 y_pred = best_model.predict(X_test)
