@@ -5,8 +5,16 @@ from sklearn.model_selection import train_test_split
 from datasets import Dataset
 import torch
 
-# load dataset train
-df = pd.read_csv(f'dataset/qa.csv', delimiter='|', names=['question', 'answer'], encoding='utf-8', quoting=csv.QUOTE_NONE)
+# Load the dataset
+def filter_valid_rows(row):
+    return len(row) == 2
+
+name = 'qa'
+with open(f'dataset/{name}.csv', 'r', encoding='utf-8') as file:
+    reader = csv.reader(file, delimiter='|')
+    filtered_rows = [row for row in reader if filter_valid_rows(row)]
+
+df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
 # Buat label biner (0 atau 1) dari data jawaban jika perlu
 df['label'] = df.index % 2  # For example, using indexes as temporary labels
