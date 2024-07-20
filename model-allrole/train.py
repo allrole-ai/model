@@ -68,3 +68,23 @@ trainer.train()
 #Saves the model & tokenizer
 model.save_pretrained("./model")
 tokenizer.save_pretrained("./model")
+
+#Example of use for predictions with pre trained models
+def predict(question, answer):
+    inputs = tokenizer(
+        question,
+        answer,
+        truncation=True,
+        padding='max_length',
+        max_length=512,
+        return_tensors="pt"
+    )
+
+    with torch.no_grad():
+        outputs = model(**inputs)
+
+    logits = outputs.logits
+    predicted_class = torch.argmax(logits, dim=1).item()
+
+    return predicted_class
+
