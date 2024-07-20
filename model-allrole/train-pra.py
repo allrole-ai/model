@@ -9,8 +9,6 @@ import re
 from tqdm import tqdm
 
 
-# Memuat data dari file yang sudah dibersihkan
-data = load_data('dataset/qa-dataset.csv')
 
 # Memuat stopword dari file
 stopwords = load_stopwords('stopword/id-stopword.txt')
