@@ -10,13 +10,6 @@ from tqdm import tqdm
 
 
 
-# Prediksi pada data test
-print("Predicting...")
-y_pred = best_model.predict(X_test)
-
-# Menghitung akurasi dan presisi
-accuracy = accuracy_score(y_test, y_pred)
-precision = precision_score(y_test, y_pred, average='macro')
 
 print("Akurasi: {:.2f}%".format(accuracy * 100))
 print("Presisi: {:.2f}%".format(precision * 100))
