@@ -9,28 +9,6 @@ import re
 from tqdm import tqdm
 
 
-
-# Fungsi untuk membersihkan teks dengan progress bar
-def preprocess_text(text, stopwords):
-    # Menghilangkan angka dan tanda baca
-    text = re.sub(r'\d+', '', text)
-    text = re.sub(r'[^\w\s]', '', text)
-    # Menghilangkan stopword
-    text = ' '.join([word for word in text.split() if word.lower() not in stopwords])
-    # Mengatasi bahasa gaul
-    slang_dict = {
-        'ga': 'tidak',
-        'gak': 'tidak',
-        'nggak': 'tidak',
-        'kamu': 'anda',
-        'aku': 'saya',
-        'iya': 'ya'
-        # Tambahkan lebih banyak kata gaul sesuai kebutuhan
-    }
-    for word, replacement in slang_dict.items():
-        text = text.replace(word, replacement)
-    return text
-
 # Memuat data dari file yang sudah dibersihkan
 data = load_data('dataset/qa-dataset.csv')
 
