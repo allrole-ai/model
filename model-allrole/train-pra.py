@@ -9,11 +9,7 @@ import re
 from tqdm import tqdm
 
 
-
-# Preprocess pertanyaan dan jawaban dengan progress bar
-tqdm.pandas(desc="Preprocessing text")
-data['question'] = data['question'].progress_apply(lambda x: preprocess_text(x, stopwords))
-data['answer'] = data['answer'].progress_apply(lambda x: preprocess_text(x, stopwords))
+)
 
 # Membuat vectorizer dan menyesuaikan dengan data
 vectorizer = TfidfVectorizer()
