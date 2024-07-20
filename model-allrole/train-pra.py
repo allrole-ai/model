@@ -11,13 +11,6 @@ from tqdm import tqdm
 
 
 
-# Menggunakan GridSearchCV untuk mencari hyperparameter terbaik
-print("Training model...")
-param_grid = {
-    'n_estimators': [100, 200, 300],
-    'max_depth': [10, 20, 30],
-    'min_samples_split': [2, 5, 10]
-}
 
 grid_search = GridSearchCV(RandomForestClassifier(), param_grid, cv=3, scoring='accuracy', n_jobs=-1)
 grid_search.fit(X_train, y_train)
