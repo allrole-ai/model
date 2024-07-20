@@ -51,3 +51,13 @@ training_args = TrainingArguments(
     num_train_epochs=3,
     weight_decay=0.01,
 )
+
+# add Trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=test_dataset,
+    tokenizer=tokenizer,
+    data_collator=data_collator,
+)
