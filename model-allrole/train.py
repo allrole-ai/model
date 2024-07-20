@@ -37,3 +37,17 @@ def preprocess_function(examples):
 #Dataset token
 train_dataset = train_dataset.map(preprocess_function, batched=True)
 test_dataset = test_dataset.map(preprocess_function, batched=True)
+
+# make Data collator
+data_collator = DataCollatorWithPadding(tokenizer)
+
+# add The training argument
+training_args = TrainingArguments(
+    output_dir="./model",
+    evaluation_strategy="epoch",
+    learning_rate=2e-5,
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=8,
+    num_train_epochs=3,
+    weight_decay=0.01,
+)
