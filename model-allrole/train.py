@@ -21,3 +21,15 @@ test_dataset = Dataset.from_pandas(test_df)
 # Load tokenizer and model
 tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
 model = AlbertForSequenceClassification.from_pretrained('albert-base-v2')
+
+#preprocessing data
+def preprocess_function(examples):
+    inputs = tokenizer(
+        examples['question'], 
+        examples['answer'], 
+        truncation=True, 
+        padding='max_length', 
+        max_length=512
+    )
+    inputs['labels'] = examples['label']
+    return inputs
