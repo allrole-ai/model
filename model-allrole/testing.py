@@ -9,7 +9,7 @@ tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
 model = TFAlbertForSequenceClassification.from_pretrained('albert-base-v2')
 
 # Load Encoder label
-with open('rf1.csv', 'r', encoding='utf-8') as file:
+with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if len(row) == 2 and row[0].strip() != "" and row[1].strip() != ""]
 
@@ -42,7 +42,7 @@ def predict(question):
 test_accuracy_metric = tf.keras.metrics.Accuracy()
 
 # test model
-with open('rf1.csv', 'r', encoding='utf-8') as file:
+with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
     filtered_rows = [row for row in reader if len(row) == 2 and row[0].strip() != "" and row[1].strip() != ""]
 
