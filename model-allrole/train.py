@@ -13,6 +13,11 @@ df.columns = ['question', 'answer']
 def filter_valid_rows(row):
     return len(row) == 2
 
+# Verifikasi kolom
+print("Nama kolom dalam DataFrame:", df.columns)
+print("Beberapa baris data:")
+print(df.head())
+
 name = 'qa'
 with open(f'dataset/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
