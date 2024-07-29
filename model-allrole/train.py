@@ -77,9 +77,6 @@ training_args = TrainingArguments(
 
 
 
- 
-    logits = outputs.logits
-    predicted_class = torch.argmax(logits, dim=1).item()
 
     return predicted_class
 
