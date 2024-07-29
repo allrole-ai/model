@@ -21,9 +21,6 @@ def main():
 response = generate_response(tokenizer, model, question)
         print(f"Answer: {response}\n")
 
-preds_test = tf.argmax(logits_test, axis=1, output_type=tf.int32)
-test_accuracy_metric.update_state(labels_test, preds_test)
-
 test_accuracy = test_accuracy_metric.result()
 print(f"Test accuracy: {test_accuracy:.4f}")
 
