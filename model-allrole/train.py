@@ -28,13 +28,6 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 
-df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
-
-# Buat label biner (0 atau 1) dari data jawaban jika perlu
-df['label'] = df.index % 2  # For example, using indexes as temporary labels
-
-# Pisahkan data menjadi pelatihan dan pengujian
-train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
 # create hugging face dataset
 train_dataset = Dataset.from_pandas(train_df)
