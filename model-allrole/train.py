@@ -27,10 +27,6 @@ model_name = "distilgpt2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
-name = 'qa'
-with open(f'dataset/{name}.csv', 'r', encoding='utf-8') as file:
-    reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if filter_valid_rows(row)]
 
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 
