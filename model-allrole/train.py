@@ -62,11 +62,7 @@ train_size = int(0.8 * len(dataset))
 eval_size = len(dataset) - train_size
 train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size, eval_size])
 
-    per_device_train_batch_size=8,
-    per_device_eval_batch_size=8,
-    num_train_epochs=3,
-    weight_decay=0.01,
-)
+
 
 # add Trainer
 trainer = Trainer(
