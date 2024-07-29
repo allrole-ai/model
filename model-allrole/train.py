@@ -33,8 +33,6 @@ tokenizer.pad_token = tokenizer.eos_token
 
 
 
-model = AlbertForSequenceClassification.from_pretrained('albert-base-v2')
-
 #preprocessing data
 def preprocess_function(examples):
     inputs = tokenizer(
