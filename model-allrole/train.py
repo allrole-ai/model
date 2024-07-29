@@ -52,14 +52,6 @@ class CustomDataset(Dataset):
     attention_mask = inputs['attention_mask'].squeeze(0)
     labels = outputs['input_ids'].squeeze(0)
 
-
-
-
-# add The training argument
-training_args = TrainingArguments(
-    output_dir="./model",
-    evaluation_strategy="epoch",
-    learning_rate=2e-5,
     per_device_train_batch_size=8,
     per_device_eval_batch_size=8,
     num_train_epochs=3,
