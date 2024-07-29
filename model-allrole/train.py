@@ -49,6 +49,8 @@ class CustomDataset(Dataset):
     outputs = self.tokenizer(answer, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
 
     input_ids = inputs['input_ids'].squeeze(0)  # Remove batch dimension
+    attention_mask = inputs['attention_mask'].squeeze(0)
+    labels = outputs['input_ids'].squeeze(0)
 
 
 
