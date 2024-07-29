@@ -75,6 +75,4 @@ training_args = TrainingArguments(
     logging_steps=10,
 )
 
-print(f"Jawaban: {answer}")
-print(f"Kelas Prediksi: {predicted_class}")
 
