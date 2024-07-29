@@ -32,19 +32,6 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 tokenizer.pad_token = tokenizer.eos_token
 
 
-
-#preprocessing data
-def preprocess_function(examples):
-    inputs = tokenizer(
-        examples['question'], 
-        examples['answer'], 
-        truncation=True, 
-        padding='max_length', 
-        max_length=512
-    )
-    inputs['labels'] = examples['label']
-    return inputs
-
 #Dataset token
 train_dataset = train_dataset.map(preprocess_function, batched=True)
 test_dataset = test_dataset.map(preprocess_function, batched=True)
