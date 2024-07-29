@@ -1,10 +1,4 @@
 
-    
-    return predicted_label
-
-# Hitung akurasi Pada Set Tes
-test_accuracy_metric = tf.keras.metrics.Accuracy()
-
 # test model
 with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
