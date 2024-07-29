@@ -2,10 +2,6 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
-
-df_test = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
-df_test['encoded_answer'] = label_encoder.transform(df_test['answer'])
-
 input_ids_test = []
 attention_masks_test = []
 for question in df_test['question']:
