@@ -1,7 +1,4 @@
 
-from sklearn.preprocessing import LabelEncoder
-import csv
-
 # Load tokenizer dan model
 tokenizer = AlbertTokenizer.from_pretrained('model-albert')
 model = TFAlbertForSequenceClassification.from_pretrained('model-albert')
