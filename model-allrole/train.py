@@ -54,7 +54,10 @@ class CustomDataset(Dataset):
     
     return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': labels}
 
+# Buat dataset
+dataset = CustomDataset(df['question'].tolist(), df['answer'].tolist(), tokenizer)
 
+# Bagi dataset menjadi train dan eval
 
 
 
