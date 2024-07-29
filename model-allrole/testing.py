@@ -14,7 +14,6 @@ def generate_response(tokenizer, model, question, max_length=128):
 
 
 
-logits_test = model(input_ids_test, attention_mask=attention_masks_test).logits
 preds_test = tf.argmax(logits_test, axis=1, output_type=tf.int32)
 test_accuracy_metric.update_state(labels_test, preds_test)
 
