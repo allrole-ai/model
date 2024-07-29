@@ -31,6 +31,14 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 # Menambahkan token padding ke tokenizer
 tokenizer.pad_token = tokenizer.eos_token
 
+class CustomDataset(Dataset):
+    def __init__(self, questions, answers, tokenizer, max_length=128):
+        self.questions = questions
+        self.answers = answers
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
+
 
 #Dataset token
 train_dataset = train_dataset.map(preprocess_function, batched=True)
