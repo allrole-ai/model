@@ -52,11 +52,7 @@ class CustomDataset(Dataset):
     attention_mask = inputs['attention_mask'].squeeze(0)
     labels = outputs['input_ids'].squeeze(0)
 
-    per_device_train_batch_size=8,
-    per_device_eval_batch_size=8,
-    num_train_epochs=3,
-    weight_decay=0.01,
-)
+    
 
 # add Trainer
 trainer = Trainer(
