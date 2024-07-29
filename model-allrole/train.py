@@ -18,6 +18,10 @@ print("Nama kolom dalam DataFrame:", df.columns)
 print("Beberapa baris data:")
 print(df.head())
 
+# Pastikan kolom 'question' dan 'answer' adalah string
+df['question'] = df['question'].astype(str)
+df['answer'] = df['answer'].astype(str)
+
 name = 'qa'
 with open(f'dataset/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
