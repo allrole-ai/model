@@ -6,6 +6,9 @@ def load_model_and_tokenizer(model_path='./trained_model'):
     model = AutoModelForCausalLM.from_pretrained(model_path)
     return tokenizer, model
 
+def generate_response(tokenizer, model, question, max_length=128):
+    inputs = tokenizer.encode(question, return_tensors='pt')
+
 
 
     input_ids_test.append(encoded['input_ids'])
