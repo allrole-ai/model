@@ -15,7 +15,9 @@ def main():
     tokenizer, model = load_model_and_tokenizer()
     
     while True:
-
+    question = input("Masukkan pertanyaan (atau ketik 'exit' untuk keluar): ")
+        if question.lower() == 'exit':
+            break
 
 preds_test = tf.argmax(logits_test, axis=1, output_type=tf.int32)
 test_accuracy_metric.update_state(labels_test, preds_test)
