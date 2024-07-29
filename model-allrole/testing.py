@@ -1,10 +1,5 @@
 
 
-# Load Encoder label
-with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
-    reader = csv.reader(file, delimiter='|')
-    filtered_rows = [row for row in reader if len(row) == 2 and row[0].strip() != "" and row[1].strip() != ""]
-
 df = pd.DataFrame(filtered_rows, columns=['question', 'answer'])
 label_encoder = LabelEncoder()
 label_encoder.fit(df['answer'])
