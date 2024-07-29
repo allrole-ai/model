@@ -75,10 +75,7 @@ training_args = TrainingArguments(
     logging_steps=10,
 )
 
-        padding='max_length',
-        max_length=512,
-        return_tensors="pt"
-    )
+
 
     with torch.no_grad():
         outputs = model(**inputs)
