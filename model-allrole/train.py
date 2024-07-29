@@ -75,15 +75,6 @@ training_args = TrainingArguments(
     logging_steps=10,
 )
 
-
-
-
-#Example of use for predictions with pre trained models
-def predict(question, answer):
-    inputs = tokenizer(
-        question,
-        answer,
-        truncation=True,
         padding='max_length',
         max_length=512,
         return_tensors="pt"
