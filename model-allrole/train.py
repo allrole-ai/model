@@ -40,6 +40,12 @@ class CustomDataset(Dataset):
 
     def __len__(self):
         return len(self.questions)
+    
+    def __getitem__(self, idx):
+        question = self.questions[idx]
+        answer = self.answers[idx]
+
+
 
 # add The training argument
 training_args = TrainingArguments(
