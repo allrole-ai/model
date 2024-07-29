@@ -45,6 +45,10 @@ class CustomDataset(Dataset):
         question = self.questions[idx]
         answer = self.answers[idx]
 
+    inputs = self.tokenizer(question, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+    outputs = self.tokenizer(answer, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+
+
 
 
 # add The training argument
