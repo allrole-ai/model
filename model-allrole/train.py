@@ -64,11 +64,7 @@ train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size
 
 
 
-# add Trainer
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    train_dataset=train_dataset,
+
     eval_dataset=test_dataset,
     tokenizer=tokenizer,
     data_collator=data_collator,
