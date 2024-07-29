@@ -2,6 +2,13 @@ import pandas as pd
 from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 
 
+# Langkah 1: Persiapan Data
+df = pd.read_csv('qa.csv', delimiter='|', on_bad_lines='skip')
+
+# Ganti nama kolom jika perlu
+df.columns = ['question', 'answer']
+
+
 # Load the dataset
 def filter_valid_rows(row):
     return len(row) == 2
