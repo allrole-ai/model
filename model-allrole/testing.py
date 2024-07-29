@@ -13,9 +13,7 @@ def generate_response(tokenizer, model, question, max_length=128):
 
 
 
-    
-input_ids_test = tf.concat(input_ids_test, axis=0)
-attention_masks_test = tf.concat(attention_masks_test, axis=0)
+
 labels_test = tf.constant(df_test['encoded_answer'].values)
 
 logits_test = model(input_ids_test, attention_mask=attention_masks_test).logits
