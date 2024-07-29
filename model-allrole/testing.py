@@ -1,6 +1,8 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+def load_model_and_tokenizer(model_path='./trained_model'):
+    tokenizer = AutoTokenizer.from_pretrained(model_path)
 
     input_ids_test.append(encoded['input_ids'])
     attention_masks_test.append(encoded['attention_mask'])
