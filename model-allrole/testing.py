@@ -1,7 +1,4 @@
 
-# Load tokenizer dan model
-tokenizer = AlbertTokenizer.from_pretrained('model-albert')
-model = TFAlbertForSequenceClassification.from_pretrained('model-albert')
 
 # Load Encoder label
 with open('dataset/qa.csv', 'r', encoding='utf-8') as file:
