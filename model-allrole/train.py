@@ -3,7 +3,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingA
 
 
 # Langkah 1: Persiapan Data
-df = pd.read_csv('qa.csv', delimiter='|', on_bad_lines='skip')
+df = pd.read_csv('dataset/qa-dataset.csv', delimiter='|', on_bad_lines='skip')
 
 # Ganti nama kolom jika perlu
 df.columns = ['question', 'answer']
@@ -62,12 +62,19 @@ train_size = int(0.8 * len(dataset))
 eval_size = len(dataset) - train_size
 train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size, eval_size])
 
+
 # Langkah 3: Pelatihan Model
 training_args = TrainingArguments(
     output_dir='./results',
     num_train_epochs=3,
     per_device_train_batch_size=4,
     per_device_eval_batch_size=4,
+    warmup_steps=500,
+    weight_decay=0.01,
+    logging_dir='./logs',
+    logging_steps=10,
+)
+
 
 
 
