@@ -21,6 +21,3 @@ def main():
 response = generate_response(tokenizer, model, question)
         print(f"Answer: {response}\n")
 
-#
-    answer = predict(question)
-    print(f"Predicted Answer: {answer}")
