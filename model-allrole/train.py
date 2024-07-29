@@ -28,10 +28,6 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 
-
-
-# Load tokenizer and model
-tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
 model = AlbertForSequenceClassification.from_pretrained('albert-base-v2')
 
 #preprocessing data
