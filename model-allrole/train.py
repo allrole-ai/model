@@ -22,6 +22,11 @@ print(df.head())
 df['question'] = df['question'].astype(str)
 df['answer'] = df['answer'].astype(str)
 
+# Langkah 2: Tokenisasi dan Pembuatan Model
+model_name = "distilgpt2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
 name = 'qa'
 with open(f'dataset/{name}.csv', 'r', encoding='utf-8') as file:
     reader = csv.reader(file, delimiter='|')
