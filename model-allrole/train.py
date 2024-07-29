@@ -96,3 +96,7 @@ model.save_pretrained('./model')
 tokenizer.save_pretrained('./model')
 
 # Langkah 4: Pengujian dan Evaluasi Model
+def generate_response(question):
+    inputs = tokenizer.encode(question, return_tensors='pt')
+    outputs = model.generate(inputs, max_length=128, num_return_sequences=1)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
