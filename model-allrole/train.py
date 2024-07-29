@@ -75,8 +75,6 @@ training_args = TrainingArguments(
     logging_steps=10,
 )
 
-predicted_class = predict(question, answer)
-print(f"Pertanyaan: {question}")
 print(f"Jawaban: {answer}")
 print(f"Kelas Prediksi: {predicted_class}")
 
