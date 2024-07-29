@@ -41,13 +41,6 @@ class CustomDataset(Dataset):
     def __len__(self):
         return len(self.questions)
 
-
-
-
-
-# make Data collator
-data_collator = DataCollatorWithPadding(tokenizer)
-
 # add The training argument
 training_args = TrainingArguments(
     output_dir="./model",
