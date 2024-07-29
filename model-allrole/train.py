@@ -43,9 +43,7 @@ class CustomDataset(Dataset):
 
 
 
-#Dataset token
-train_dataset = train_dataset.map(preprocess_function, batched=True)
-test_dataset = test_dataset.map(preprocess_function, batched=True)
+
 
 # make Data collator
 data_collator = DataCollatorWithPadding(tokenizer)
