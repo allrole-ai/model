@@ -51,8 +51,23 @@ class CustomDataset(Dataset):
     input_ids = inputs['input_ids'].squeeze(0)  # Remove batch dimension
     attention_mask = inputs['attention_mask'].squeeze(0)
     labels = outputs['input_ids'].squeeze(0)
-
     
+    return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': labels}
+
+
+
+
+
+# add The training argument
+training_args = TrainingArguments(
+    output_dir="./model",
+    evaluation_strategy="epoch",
+    learning_rate=2e-5,
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=8,
+    num_train_epochs=3,
+    weight_decay=0.01,
+)
 
 # add Trainer
 trainer = Trainer(
