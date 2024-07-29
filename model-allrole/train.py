@@ -62,16 +62,6 @@ train_size = int(0.8 * len(dataset))
 eval_size = len(dataset) - train_size
 train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size, eval_size])
 
-
-
-
-
-
-# add The training argument
-training_args = TrainingArguments(
-    output_dir="./model",
-    evaluation_strategy="epoch",
-    learning_rate=2e-5,
     per_device_train_batch_size=8,
     per_device_eval_batch_size=8,
     num_train_epochs=3,
