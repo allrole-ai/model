@@ -11,7 +11,10 @@ def generate_response(tokenizer, model, question, max_length=128):
     outputs = model.generate(inputs, max_length=max_length, num_return_sequences=1)
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-
+def main():
+    tokenizer, model = load_model_and_tokenizer()
+    
+    while True:
 
 
 preds_test = tf.argmax(logits_test, axis=1, output_type=tf.int32)
