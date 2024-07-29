@@ -29,9 +29,6 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 
 
 
-# create hugging face dataset
-train_dataset = Dataset.from_pandas(train_df)
-test_dataset = Dataset.from_pandas(test_df)
 
 # Load tokenizer and model
 tokenizer = AlbertTokenizer.from_pretrained('albert-base-v2')
