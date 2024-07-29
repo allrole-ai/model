@@ -1,10 +1,6 @@
 
 
-        padding='max_length',
-        truncation=True,
-        return_attention_mask=True,
-        return_tensors='tf'
-    )
+
 
     input_ids = encoded['input_ids']
     attention_mask = encoded['attention_mask']
