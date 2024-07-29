@@ -66,13 +66,6 @@ train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size
 
 
 
-# make Training the model
-trainer.train()
-
-#Saves the model & tokenizer
-model.save_pretrained("./model")
-tokenizer.save_pretrained("./model")
-
 #Example of use for predictions with pre trained models
 def predict(question, answer):
     inputs = tokenizer(
