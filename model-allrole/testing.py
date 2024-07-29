@@ -2,12 +2,6 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
-
-        padding='max_length',
-        truncation=True,
-        return_attention_mask=True,
-        return_tensors='tf'
-    )
     input_ids_test.append(encoded['input_ids'])
     attention_masks_test.append(encoded['attention_mask'])
 
