@@ -21,10 +21,6 @@ def main():
 response = generate_response(tokenizer, model, question)
         print(f"Answer: {response}\n")
 
-# Loop interaktif untuk input & prediksi pengguna
-while True:
-    question = input("Enter a question (or 'exit' to quit): ")
-    if question.lower() == 'exit':
-        break
+#
     answer = predict(question)
     print(f"Predicted Answer: {answer}")
