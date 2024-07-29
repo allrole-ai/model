@@ -1,10 +1,4 @@
 
-
-
-
-    logits = model(input_ids, attention_mask=attention_mask).logits
-    predicted_label_id = tf.argmax(logits, axis=1).numpy()[0]
-    predicted_label = label_encoder.inverse_transform([predicted_label_id])[0]
     
     return predicted_label
 
