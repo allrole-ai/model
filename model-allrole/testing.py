@@ -2,13 +2,7 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
-input_ids_test = []
-attention_masks_test = []
-for question in df_test['question']:
-    encoded = tokenizer.encode_plus(
-        question,
-        add_special_tokens=True,
-        max_length=128,
+
         padding='max_length',
         truncation=True,
         return_attention_mask=True,
