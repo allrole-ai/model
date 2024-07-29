@@ -28,6 +28,11 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForCausalLM.from_pretrained(model_name)
 
 
+# Menambahkan token padding ke tokenizer
+tokenizer.pad_token = tokenizer.eos_token
+
+
+
 model = AlbertForSequenceClassification.from_pretrained('albert-base-v2')
 
 #preprocessing data
