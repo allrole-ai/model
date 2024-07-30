@@ -39,8 +39,3 @@ def answer_question(question, context=[]):
     - question (str): Pertanyaan yang diajukan.
     - context (list): Daftar konteks percakapan sebelumnya.
     
-    Returns:
-    - str: Jawaban yang dihasilkan oleh model.
-    """
-    context.append(question)
-    input_text = " ".join(context)
