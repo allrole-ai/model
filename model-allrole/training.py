@@ -6,9 +6,7 @@
 
 
 
-# Konversi label menjadi angka
-label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
-id2label = {i: label for label, i in label2id.items()}
+
 
 
 # Membuat dataset dengan format yang sesuai untuk Trainer
