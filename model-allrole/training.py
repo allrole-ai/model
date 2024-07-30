@@ -24,10 +24,7 @@ training_args = TrainingArguments(
     per_device_eval_batch_size=8,
     warmup_steps=500,
     weight_decay=0.01,
-    logging_dir='./logs',
-    logging_steps=10,
-    eval_strategy="epoch"  # Updated parameter name
-)
+
 
 trainer = Trainer(
     model=model,
