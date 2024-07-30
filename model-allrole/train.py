@@ -30,9 +30,7 @@
 
 
 
-# Simpan model dan tokenizer
-model.save_pretrained('./model')
-tokenizer.save_pretrained('./model')
+
 
 # Langkah 4: Pengujian dan Evaluasi Model
 def generate_response(question):
