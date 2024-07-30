@@ -9,8 +9,7 @@
 # Konversi label menjadi angka
 label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
 id2label = {i: label for label, i in label2id.items()}
-train_labels = train_labels.map(label2id)
-val_labels = val_labels.map(label2id)
+
 
 # Membuat dataset dengan format yang sesuai untuk Trainer
 class QADataset(torch.utils.data.Dataset):
