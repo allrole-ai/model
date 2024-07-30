@@ -6,3 +6,5 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 from transformers import pipeline
 
 qa_data = pd.read_csv('dataset/qa-dataset.csv', delimiter='|')
+
+qa_data = qa_data.dropna().reset_index(drop=True)
