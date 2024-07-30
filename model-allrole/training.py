@@ -28,8 +28,7 @@
 # Simpan model dan tokenizer
 if not os.path.exists('model'):
     os.makedirs('model')
-model.save_pretrained('model/qa_model')
-tokenizer.save_pretrained('model/qa_tokenizer')
+
 
 # Fungsi untuk menjawab pertanyaan baru
 nlp = pipeline('text-classification', model=model, tokenizer=tokenizer, return_all_scores=True)
