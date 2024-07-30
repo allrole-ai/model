@@ -17,8 +17,6 @@
 
 
 
-# Buat dataset
-dataset = CustomDataset(df['question'].tolist(), df['answer'].tolist(), tokenizer)
 
 # Bagi dataset menjadi train dan eval
 train_size = int(0.8 * len(dataset))
