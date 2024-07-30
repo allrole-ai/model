@@ -12,8 +12,7 @@
 # Membuat dataset dengan format yang sesuai untuk Trainer
 class QADataset(torch.utils.data.Dataset):
     def __init__(self, encodings, labels):
-        self.encodings = encodings
-        self.labels = labels
+
 
 
 
