@@ -14,7 +14,6 @@
 
 
 
-train_dataset = QADataset(train_encodings, train_labels)
 
 
 # Set up Trainer
