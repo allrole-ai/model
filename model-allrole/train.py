@@ -23,10 +23,7 @@
 
 
 
-data_collator = DataCollatorForLanguageModeling(
-    tokenizer=tokenizer,
-    mlm=False  # Masked Language Modeling is not used for causal language models
-)
+
 
 
 trainer = Trainer(
