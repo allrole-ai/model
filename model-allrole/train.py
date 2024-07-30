@@ -13,8 +13,7 @@
 
 
 
-# Menambahkan token padding ke tokenizer
-tokenizer.pad_token = tokenizer.eos_token
+
 
 class CustomDataset(Dataset):
     def __init__(self, questions, answers, tokenizer, max_length=128):
