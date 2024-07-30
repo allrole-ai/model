@@ -28,7 +28,7 @@
 
 
 
-trainer.train()
+
 
 # Simpan model dan tokenizer
 model.save_pretrained('./model')
