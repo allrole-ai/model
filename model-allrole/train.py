@@ -10,10 +10,7 @@
 
 
 
-# Langkah 2: Tokenisasi dan Pembuatan Model
-model_name = "distilgpt2"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(model_name)
+
 
 
 # Menambahkan token padding ke tokenizer
