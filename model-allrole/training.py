@@ -19,9 +19,7 @@
 
 
 
-trainer = Trainer(
-    model=model,
-    args=training_args,
+
 
 # Melatih model
 trainer.train()
