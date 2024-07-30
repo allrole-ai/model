@@ -20,3 +20,6 @@ def main():
             break
         response = generate_response(tokenizer, model, question)
         print(f"Answer: {response}\n")
+
+if __name__ == "__main__":
+    main()
