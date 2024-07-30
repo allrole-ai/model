@@ -4,9 +4,6 @@
 
 
 
-# Load tokenizer dan model
-tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
-model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=len(qa_data['answer'].unique()))
 
 # Tokenisasi
 train_encodings = tokenizer(train_texts.tolist(), truncation=True, padding=True)
