@@ -1,7 +1,6 @@
 
 
-# Membaca dataset QA
-qa_data = pd.read_csv('dataset/qa-dataset.csv', delimiter='|')
+
 
 # Pra-pemrosesan data
 qa_data = qa_data.dropna().reset_index(drop=True)
