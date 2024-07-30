@@ -8,10 +8,7 @@
 
 
 
-# Verifikasi kolom
-print("Nama kolom dalam DataFrame:", df.columns)
-print("Beberapa baris data:")
-print(df.head())
+
 
 # Pastikan kolom 'question' dan 'answer' adalah string
 df['question'] = df['question'].astype(str)
