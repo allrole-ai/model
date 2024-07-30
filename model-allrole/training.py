@@ -28,6 +28,3 @@
 
 
 
-# Fungsi untuk menjawab pertanyaan baru
-nlp = pipeline('text-classification', model=model, tokenizer=tokenizer, return_all_scores=True)
-
