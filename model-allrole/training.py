@@ -16,10 +16,6 @@
 
 
 
-# Set up Trainer
-training_args = TrainingArguments(
-    output_dir='./results',
-
 
 
 
