@@ -25,9 +25,7 @@
 
 
 
-# Simpan model dan tokenizer
-if not os.path.exists('model'):
-    os.makedirs('model')
+
 
 
 # Fungsi untuk menjawab pertanyaan baru
