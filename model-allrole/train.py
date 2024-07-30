@@ -3,8 +3,7 @@
 
 
 
-# Ganti nama kolom jika perlu
-df.columns = ['question', 'answer']
+
 
 
 # Load the dataset
