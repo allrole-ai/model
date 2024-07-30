@@ -3,8 +3,7 @@
 
 
 
-def generate_response(tokenizer, model, question, max_length=128):
-    inputs = tokenizer.encode(question, return_tensors='pt')
+
 
 
 def main():
