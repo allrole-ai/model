@@ -1,86 +1,114 @@
 import pandas as pd
+from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, DataCollatorForLanguageModeling
 import torch
-import os
-from sklearn.model_selection import train_test_split
-from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification, Trainer, TrainingArguments
-from transformers import pipeline
+from torch.utils.data import Dataset
 
-qa_data = pd.read_csv('dataset/qa-dataset.csv', delimiter='|')
 
-qa_data = qa_data.dropna().reset_index(drop=True)
+# Langkah 1: Persiapan Data
+df = pd.read_csv('dataset/qa-dataset.csv', delimiter='|', on_bad_lines='skip')
 
-train_texts, val_texts, train_labels, val_labels = train_test_split(qa_data['question'], qa_data['answer'], test_size=0.2, random_state=42)
+# Ganti nama kolom jika perlu
+df.columns = ['question', 'answer']
 
-tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
-model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=len(qa_data['answer'].unique()))
 
-train_encodings = tokenizer(train_texts.tolist(), truncation=True, padding=True)
-val_encodings = tokenizer(val_texts.tolist(), truncation=True, padding=True)
+# Load the dataset
+def filter_valid_rows(row):
+    return len(row) == 2
 
-label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
-id2label = {i: label for label, i in label2id.items()}
-train_labels = train_labels.map(label2id)
-val_labels = val_labels.map(label2id)
+# Verifikasi kolom
+print("Nama kolom dalam DataFrame:", df.columns)
+print("Beberapa baris data:")
+print(df.head())
 
-class QADataset(torch.utils.data.Dataset):
-    def __init__(self, encodings, labels):
-        self.encodings = encodings
-        self.labels = labels
+# Pastikan kolom 'question' dan 'answer' adalah string
+df['question'] = df['question'].astype(str)
+df['answer'] = df['answer'].astype(str)
 
-    def __getitem__(self, idx):
-        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
-        item['labels'] = torch.tensor(self.labels.iloc[idx])
-        return item
+# Langkah 2: Tokenisasi dan Pembuatan Model
+model_name = "distilgpt2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(model_name)
+
+
+# Menambahkan token padding ke tokenizer
+tokenizer.pad_token = tokenizer.eos_token
+
+class CustomDataset(Dataset):
+    def __init__(self, questions, answers, tokenizer, max_length=128):
+        self.questions = questions
+        self.answers = answers
+        self.tokenizer = tokenizer
+        self.max_length = max_length
 
     def __len__(self):
-        return len(self.labels)
+        return len(self.questions)
 
-train_dataset = QADataset(train_encodings, train_labels)
-val_dataset = QADataset(val_encodings, val_labels)
+    def __getitem__(self, idx):
+        question = self.questions[idx]
+        answer = self.answers[idx]
 
+        inputs = self.tokenizer(question, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+        outputs = self.tokenizer(answer, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+
+        input_ids = inputs['input_ids'].squeeze(0)  # Remove batch dimension
+        attention_mask = inputs['attention_mask'].squeeze(0)
+        labels = outputs['input_ids'].squeeze(0)
+
+        return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': labels}
+
+# Buat dataset
+dataset = CustomDataset(df['question'].tolist(), df['answer'].tolist(), tokenizer)
+
+# Bagi dataset menjadi train dan eval
+train_size = int(0.8 * len(dataset))
+eval_size = len(dataset) - train_size
+train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size, eval_size])
+
+
+# Langkah 3: Pelatihan Model
 training_args = TrainingArguments(
     output_dir='./results',
     num_train_epochs=3,
-    per_device_train_batch_size=8,
-    per_device_eval_batch_size=8,
+    per_device_train_batch_size=4,
+    per_device_eval_batch_size=4,
     warmup_steps=500,
     weight_decay=0.01,
     logging_dir='./logs',
     logging_steps=10,
-    eval_strategy="epoch"  # Updated parameter name
 )
+
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False  # Masked Language Modeling is not used for causal language models
+)
+
 
 trainer = Trainer(
     model=model,
     args=training_args,
+    data_collator=data_collator,
     train_dataset=train_dataset,
-    eval_dataset=val_dataset
+    eval_dataset=eval_dataset,
 )
 
 trainer.train()
 
-trainer.evaluate()
+# Simpan model dan tokenizer
+model.save_pretrained('./model')
+tokenizer.save_pretrained('./model')
 
-if not os.path.exists('model'):
-    os.makedirs('model')
-model.save_pretrained('model/qa_model')
-tokenizer.save_pretrained('model/qa_tokenizer')
+# Langkah 4: Pengujian dan Evaluasi Model
+def generate_response(question):
+    inputs = tokenizer.encode(question, return_tensors='pt')
+    outputs = model.generate(inputs, max_length=128, num_return_sequences=1)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-nlp = pipeline('text-classification', model=model, tokenizer=tokenizer, return_all_scores=True)
 
-def answer_question(question, context=[]):
-    """
-    Menjawab pertanyaan berdasarkan konteks percakapan sebelumnya.
-    
-    Parameters:
-    - question (str): Pertanyaan yang diajukan.
-    - context (list): Daftar konteks percakapan sebelumnya.
-    
-    Returns:
-    - str: Jawaban yang dihasilkan oleh model.
-    """
-    context.append(question)
-    input_text = " ".join(context)
-    result = nlp(input_text)
-    label = max(result[0], key=lambda x: x['score'])['label']
-    return id2label[int(label.split('_')[-1])]
+test_questions = [
+    "cara bayar spp",
+    "cara buka Menu"
+]
+
+for question in test_questions:
+    print(f"Question: {question}")
+    print(f"Answer: {generate_response(question)}\n")
