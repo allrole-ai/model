@@ -109,5 +109,19 @@ for question in test_questions:
     print(f"Answer: {generate_response(question)}\n")
 
 
-//
 
+from transformers import T5Tokenizer, T5ForConditionalGeneration
+
+# Load tokenizer dan model
+tokenizer = T5Tokenizer.from_pretrained('t5-small')
+model = T5ForConditionalGeneration.from_pretrained('t5-small')
+
+# Pra-pemrosesan data
+train_texts = ["question: " + q + " answer: " + a for q, a in zip(train_texts, train_labels)]
+val_texts = ["question: " + q + " answer: " + a for q, a in zip(val_texts, val_labels)]
+
+# Tokenisasi
+train_encodings = tokenizer(train_texts, truncation=True, padding=True, return_tensors='pt')
+val_encodings = tokenizer(val_texts, truncation=True, padding=True, return_tensors='pt')
+
+# (Langkah lainnya sama, kecuali output dan tokenizer handling pada tahap akhir)
