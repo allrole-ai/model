@@ -49,3 +49,5 @@ def __getitem__(self, idx):
 
     return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': labels}
 
+dataset = CustomDataset(df['question'].tolist(), df['answer'].tolist(), tokenizer)
+
