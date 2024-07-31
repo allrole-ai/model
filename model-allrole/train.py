@@ -149,3 +149,5 @@ class QADataset(torch.utils.data.Dataset):
         item['labels'] = torch.tensor(self.labels.iloc[idx])
         return item
 
+    def __len__(self):
+        return len(self.labels)
