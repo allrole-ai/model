@@ -7,8 +7,7 @@
 
 
 
-    def __len__(self):
-        return len(self.labels)
+
 
 train_dataset = QADataset(train_encodings, train_labels)
 val_dataset = QADataset(val_encodings, val_labels)
