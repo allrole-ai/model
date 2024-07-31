@@ -109,12 +109,5 @@ for question in test_questions:
     print(f"Answer: {generate_response(question)}\n")
 
 
-/
-from transformers import BertTokenizerFast, BertForSequenceClassification
-
-# Load tokenizer dan model
-tokenizer = BertTokenizerFast.from_pretrained('bert-base-uncased')
-model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=len(qa_data['answer'].unique()))
-
-# (Langkah lainnya sama seperti di atas)
+//
 
