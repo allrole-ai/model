@@ -11,3 +11,5 @@ with open('data.pkl', 'rb') as f:
     data = pickle.load(f)
 
 def get_response(query):
+
+query_vec = vectorizer.transform([query]).toarray()
