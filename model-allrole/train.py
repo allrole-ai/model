@@ -90,3 +90,8 @@ def generate_response(question):
     outputs = model.generate(inputs, max_length=128, num_return_sequences=1)
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
+test_questions = [
+    "cara bayar spp",
+    "cara buka Menu"
+]
+
