@@ -71,8 +71,3 @@ trainer.train()
 # Evaluasi model
 trainer.evaluate()
 
-# Simpan model dan tokenizer
-if not os.path.exists('model'):
-    os.makedirs('model')
-model.save_pretrained('model/qa_model')
-tokenizer.save_pretrained('model/qa_tokenizer')
