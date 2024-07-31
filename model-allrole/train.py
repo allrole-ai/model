@@ -129,11 +129,11 @@ model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_l
 
 # Tokenisasi
 train_encodings = tokenizer(train_texts.tolist(), truncation=True, padding=True)
-# val_encodings = tokenizer(val_texts.tolist(), truncation=True, padding=True)
+val_encodings = tokenizer(val_texts.tolist(), truncation=True, padding=True)
 
-# # Konversi label menjadi angka
-# label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
-# id2label = {i: label for label, i in label2id.items()}
+# Konversi label menjadi angka
+label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
+id2label = {i: label for label, i in label2id.items()}
 
 # train_labels = train_labels.map(label2id)
 # val_labels = val_labels.map(label2id)
