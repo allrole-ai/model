@@ -159,3 +159,10 @@ class QADataset(torch.utils.data.Dataset):
     def __len__(self):
         return len(self.labels)
 
+train_dataset = QADataset(train_encodings, train_labels)
+val_dataset = QADataset(val_encodings, val_labels)
+
+# Set up Trainer
+training_args = TrainingArguments(
+    output_dir='./results_distilbert_augmented',
+    num_train
