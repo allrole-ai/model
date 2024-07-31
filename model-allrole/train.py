@@ -192,3 +192,10 @@ def evaluate_model(trainer, val_dataset, id2label):
     with open('model_distilbert/accuracy.txt', 'w') as f:
         f.write(f"Accuracy: {accuracy}\n")
 
+    # Print akurasi
+    print(f"Accuracy: {accuracy}")
+    return accuracy
+
+# Evaluasi model dan simpan akurasi
+accuracy = evaluate_model(trainer, val_dataset, id2label)
+
