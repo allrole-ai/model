@@ -1,8 +1,4 @@
 
-# Pastikan kolom 'question' dan 'answer' adalah string
-df['question'] = df['question'].astype(str)
-df['answer'] = df['answer'].astype(str)
-
 # Langkah 2: Tokenisasi dan Pembuatan Model
 model_name = "distilgpt2"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
