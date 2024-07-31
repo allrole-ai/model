@@ -13,6 +13,12 @@ def generate_response(tokenizer, model, question, max_length=128, temperature=0.
         max_length=max_length, 
         num_return_sequences=1,
         temperature=temperature,
+         top_k=top_k,
+        top_p=top_p,
+        no_repeat_ngram_size=2
+    )
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
 
 def main():
     tokenizer, model = load_model_and_tokenizer()
