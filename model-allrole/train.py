@@ -203,3 +203,8 @@ accuracy = evaluate_model(trainer, val_dataset, id2label)
 if not os.path.exists('model_distilbert'):
     os.makedirs('model_distilbert')
 
+model.save_pretrained('model_distilbert/qa_model')
+tokenizer.save_pretrained('model_distilbert/qa_tokenizer')
+
+# Fungsi untuk menjawab pertanyaan baru
+nlp = pipeline('text-classification', model=model, tokenizer=tokenizer, return_all_scores=True)
