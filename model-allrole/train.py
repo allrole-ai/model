@@ -177,3 +177,11 @@ trainer = Trainer(
 
 # Melatih model
 trainer.train()
+
+# Evaluasi model
+trainer.evaluate()
+
+# Simpan model dan tokenizer
+if not os.path.exists('model_bert'):
+    os.makedirs('model_bert')
+
