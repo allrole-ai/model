@@ -79,3 +79,5 @@ trainer = Trainer(
     eval_dataset=eval_dataset,
 )
 
+trainer.train()
+
