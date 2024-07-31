@@ -20,3 +20,5 @@ df['answer'] = df['answer'].astype(str)
 
 model_name = "distilgpt2"
 
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
