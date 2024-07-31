@@ -26,3 +26,10 @@ model = AutoModelForCausalLM.from_pretrained(model_name)
 
 tokenizer.pad_token = tokenizer.eos_token
 
+class CustomDataset(Dataset):
+    def __init__(self, questions, answers, tokenizer, max_length=128):
+        self.questions = questions
+        self.answers = answers
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
