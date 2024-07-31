@@ -17,3 +17,5 @@ train_texts, val_texts, train_labels, val_labels = train_test_split(qa_data['que
 # Load tokenizer dan model
 tokenizer = DistilBertTokenizerFast.from_pretrained('distilbert-base-uncased')
 
+model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', num_labels=len(qa_data['answer'].unique()))
+
