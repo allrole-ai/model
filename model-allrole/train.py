@@ -9,3 +9,5 @@ df.columns = ['question', 'answer']
 
 def filter_valid_rows(row):
     return len(row) == 2
+
+print("Nama kolom dalam DataFrame:", df.columns)
