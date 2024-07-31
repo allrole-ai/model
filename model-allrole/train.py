@@ -135,3 +135,6 @@ val_encodings = tokenizer(val_texts.tolist(), truncation=True, padding=True)
 label2id = {label: i for i, label in enumerate(qa_data['answer'].unique())}
 id2label = {i: label for label, i in label2id.items()}
 
+train_labels = train_labels.map(label2id)
+val_labels = val_labels.map(label2id)
+
