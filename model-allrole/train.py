@@ -1,13 +1,4 @@
 
-
-trainer = Trainer(
-    model=model,
-    args=training_args,
-    data_collator=data_collator,
-    train_dataset=train_dataset,
-    eval_dataset=eval_dataset,
-)
-
 trainer.train()
 
 # Simpan model dan tokenizer
