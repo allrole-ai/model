@@ -49,3 +49,6 @@ class QADataset(torch.utils.data.Dataset):
     
 train_dataset = QADataset(train_encodings, train_labels)
 
+val_dataset = QADataset(val_encodings, val_labels)
+
+
