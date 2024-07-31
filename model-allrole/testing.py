@@ -13,7 +13,7 @@ def generate_response(tokenizer, model, question, max_length=128, temperature=0.
         max_length=max_length, 
         num_return_sequences=1,
         temperature=temperature,
-         top_k=top_k,
+        top_k=top_k,
         top_p=top_p,
         no_repeat_ngram_size=2
     )
