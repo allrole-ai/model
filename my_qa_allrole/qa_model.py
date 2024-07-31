@@ -6,3 +6,6 @@ import pandas as pd
 
 with open('vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
+
+with open('data.pkl', 'rb') as f:
+    data = pickle.load(f)
