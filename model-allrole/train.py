@@ -118,3 +118,9 @@ from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassific
 
 # Membaca dataset QA
 qa_data = pd.read_csv('dataset/qa-dataset.csv', delimiter='|')
+
+# Augmentasi Data
+augmented_data = qa_data.copy()
+augmented_data['question'] = augmented_data['question'].apply(lambda x: x + " tambahan")
+qa_data = pd.concat([qa_data, augmented_data], ignore_index=True)
+
