@@ -19,3 +19,5 @@ data_vecs = vectorizer.transform(data['question']).toarray()
 similarities = cosine_similarity(query_vec, data_vecs).flatten()
 
 closest_idx = np.argmax(similarities)
+
+return data['answer'][closest_idx]
