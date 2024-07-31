@@ -22,3 +22,5 @@ model = DistilBertForSequenceClassification.from_pretrained('distilbert-base-unc
 # Tokenisasi
 train_encodings = tokenizer(train_texts.tolist(), truncation=True, padding=True)
 
+val_encodings = tokenizer(val_texts.tolist(), truncation=True, padding=True)
+
