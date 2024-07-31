@@ -187,3 +187,9 @@ trainer.evaluate()
 if not os.path.exists('model_roberta'):
     os.makedirs('model_roberta')
 
+model.save_pretrained('model_roberta/qa_model')
+tokenizer.save_pretrained('model_roberta/qa_tokenizer')
+
+# Fungsi untuk menjawab pertanyaan baru
+nlp = pipeline('text-classification', model=model, tokenizer=tokenizer, return_all_scores=True)
+
