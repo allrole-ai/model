@@ -16,3 +16,6 @@ print(df.head())
 
 df['question'] = df['question'].astype(str)
 
+df['answer'] = df['answer'].astype(str)
+
+
