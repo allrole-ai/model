@@ -71,3 +71,11 @@ data_collator = DataCollatorForLanguageModeling(
     mlm=False  # Masked Language Modeling is not used for causal language models
 )
 
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    data_collator=data_collator,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+)
+
