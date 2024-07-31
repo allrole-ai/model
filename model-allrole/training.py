@@ -60,3 +60,6 @@ trainer = Trainer(
 
 trainer.train()
 trainer.evaluate()
+
+if not os.path.exists('model'):
+    os.makedirs('model')
