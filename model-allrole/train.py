@@ -186,3 +186,9 @@ def evaluate_model(trainer, val_dataset, id2label):
     predictions, labels, _ = trainer.predict(val_dataset)
     predicted_labels = np.argmax(predictions, axis=1)
     true_labels = labels
+    accuracy = accuracy_score(true_labels, predicted_labels)
+
+    # Simpan akurasi ke file
+    with open('model_distilbert/accuracy.txt', 'w') as f:
+        f.write(f"Accuracy: {accuracy}\n")
+
