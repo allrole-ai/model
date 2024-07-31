@@ -183,3 +183,8 @@ trainer.evaluate()
 
 # Simpan model dan tokenizer
 if not os.path.exists('model_bert'):
+    os.makedirs('model_bert')
+
+model.save_pretrained('model_bert/qa_model')
+tokenizer.save_pretrained('model_bert/qa_tokenizer')
+
