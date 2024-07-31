@@ -66,3 +66,8 @@ training_args = TrainingArguments(
     logging_steps=10,
 )
 
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False  # Masked Language Modeling is not used for causal language models
+)
+
