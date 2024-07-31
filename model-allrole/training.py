@@ -30,3 +30,5 @@ id2label = {i: label for label, i in label2id.items()}
 
 train_labels = train_labels.map(label2id)
 
+val_labels = val_labels.map(label2id)
+
