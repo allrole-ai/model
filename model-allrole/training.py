@@ -9,8 +9,7 @@
 
 
 
-train_dataset = QADataset(train_encodings, train_labels)
-val_dataset = QADataset(val_encodings, val_labels)
+
 
 # Set up Trainer
 training_args = TrainingArguments(
