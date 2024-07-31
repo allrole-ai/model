@@ -13,3 +13,5 @@ with open('data.pkl', 'rb') as f:
 def get_response(query):
 
 query_vec = vectorizer.transform([query]).toarray()
+
+data_vecs = vectorizer.transform(data['question']).toarray()
