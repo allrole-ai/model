@@ -112,3 +112,6 @@ for question in test_questions:
 
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
+# Load tokenizer dan model
+tokenizer = T5Tokenizer.from_pretrained('t5-small')
+model = T5ForConditionalGeneration.from_pretrained('t5-small')
