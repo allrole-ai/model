@@ -83,5 +83,8 @@ if not os.path.exists('model'):
     
 model.save_pretrained('model/qa_model')
 
+tokenizer.save_pretrained('model/qa_tokenizer')
+
+
 
 
