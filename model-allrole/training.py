@@ -74,4 +74,8 @@ trainer = Trainer(
 # Melatih model
 trainer.train()
 
+# Evaluasi model
+trainer.evaluate()
+
+
 
