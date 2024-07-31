@@ -64,4 +64,11 @@ training_args = TrainingArguments(
     eval_strategy="epoch"  # Updated parameter name
 )
 
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=val_dataset
+)
+
 
