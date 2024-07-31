@@ -28,19 +28,7 @@ id2label = {i: label for label, i in label2id.items()}
 train_labels = train_labels.map(label2id)
 val_labels = val_labels.map(label2id)
 
-# Membuat dataset dengan format yang sesuai untuk Trainer
-class QADataset(torch.utils.data.Dataset):
-    def __init__(self, encodings, labels):
-        self.encodings = encodings
-        self.labels = labels
 
-    def __getitem__(self, idx):
-        item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
-        item['labels'] = torch.tensor(self.labels.iloc[idx])
-        return item
-
-    def __len__(self):
-        return len(self.labels)
 
 
 
