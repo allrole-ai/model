@@ -147,10 +147,10 @@ class QADataset(torch.utils.data.Dataset):
     def __getitem__(self, idx):
         item = {key: torch.tensor(val[idx]) for key, val in self.encodings.items()}
         item['labels'] = torch.tensor(self.labels.iloc[idx])
-    #     return item
+        return item
 
-    # def __len__(self):
-    #     return len(self.labels)
+    def __len__(self):
+        return len(self.labels)
 
 # train_dataset = QADataset(train_encodings, train_labels)
 # val_dataset = QADataset(val_encodings, val_labels)
