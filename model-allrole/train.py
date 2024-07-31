@@ -1,11 +1,5 @@
 
 
-# Langkah 1: Persiapan Data
-df = pd.read_csv('dataset/qa-dataset.csv', delimiter='|', on_bad_lines='skip')
-
-# Ganti nama kolom jika perlu
-df.columns = ['question', 'answer']
-
 
 # Load the dataset
 def filter_valid_rows(row):
