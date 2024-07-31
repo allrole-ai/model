@@ -102,10 +102,7 @@ def generate_response(question):
     return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 
-test_questions = [
-    "cara bayar spp",
-    "cara buka Menu"
-]
+
 
 for question in test_questions:
     print(f"Question: {question}")
