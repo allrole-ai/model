@@ -124,3 +124,6 @@ augmented_data = qa_data.copy()
 augmented_data['question'] = augmented_data['question'].apply(lambda x: x + " tambahan")
 qa_data = pd.concat([qa_data, augmented_data], ignore_index=True)
 
+# Pra-pemrosesan data
+qa_data = qa_data.dropna().reset_index(drop=True)
+
