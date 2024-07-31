@@ -71,4 +71,7 @@ trainer = Trainer(
     eval_dataset=val_dataset
 )
 
+# Melatih model
+trainer.train()
+
 
