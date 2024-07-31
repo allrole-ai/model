@@ -1,9 +1,4 @@
 
-# Bagi dataset menjadi train dan eval
-train_size = int(0.8 * len(dataset))
-eval_size = len(dataset) - train_size
-train_dataset, eval_dataset = torch.utils.data.random_split(dataset, [train_size, eval_size])
-
 
 # Langkah 3: Pelatihan Model
 training_args = TrainingArguments(
