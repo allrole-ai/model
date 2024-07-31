@@ -199,3 +199,7 @@ def evaluate_model(trainer, val_dataset, id2label):
 # Evaluasi model dan simpan akurasi
 accuracy = evaluate_model(trainer, val_dataset, id2label)
 
+# Simpan model dan tokenizer
+if not os.path.exists('model_distilbert'):
+    os.makedirs('model_distilbert')
+
