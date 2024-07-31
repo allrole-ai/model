@@ -83,3 +83,5 @@ trainer.train()
 
 model.save_pretrained('./model')
 
+tokenizer.save_pretrained('./model')
+
