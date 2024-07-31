@@ -197,3 +197,9 @@ def answer_question(question, context=[]):
     result = nlp(input_text)
     label = max(result[0], key=lambda x: x['score'])['label']
     return id2label[int(label.split('_')[-1])]
+
+if __name__ == "__main__":
+    context = []
+    question = "What is AI?"
+    answer = answer_question(question, context)
+    print("Answer:", answer)
