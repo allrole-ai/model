@@ -32,3 +32,8 @@ train_labels = train_labels.map(label2id)
 
 val_labels = val_labels.map(label2id)
 
+# Membuat dataset dengan format yang sesuai untuk Trainer
+class QADataset(torch.utils.data.Dataset):
+    def __init__(self, encodings, labels):
+        self.encodings = encodings
+        self.labels = labels
