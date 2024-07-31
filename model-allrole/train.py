@@ -14,3 +14,5 @@ print("Nama kolom dalam DataFrame:", df.columns)
 print("Beberapa baris data:")
 print(df.head())
 
+df['question'] = df['question'].astype(str)
+
