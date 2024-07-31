@@ -18,4 +18,5 @@ df['question'] = df['question'].astype(str)
 
 df['answer'] = df['answer'].astype(str)
 
+model_name = "distilgpt2"
 
