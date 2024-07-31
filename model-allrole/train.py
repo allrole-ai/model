@@ -36,3 +36,16 @@ class CustomDataset(Dataset):
 def __len__(self):
     return len(self.questions)
 
+def __getitem__(self, idx):
+    question = self.questions[idx]
+    answer = self.answers[idx]
+
+    inputs = self.tokenizer(question, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+    outputs = self.tokenizer(answer, return_tensors='pt', padding='max_length', max_length=self.max_length, truncation=True)
+
+    input_ids = inputs['input_ids'].squeeze(0)  # Remove batch dimension
+    attention_mask = inputs['attention_mask'].squeeze(0)
+    labels = outputs['input_ids'].squeeze(0)
+
+    return {'input_ids': input_ids, 'attention_mask': attention_mask, 'labels': labels}
+
