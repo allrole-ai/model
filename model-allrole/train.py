@@ -184,3 +184,6 @@ trainer.train()
 # Evaluasi model
 trainer.evaluate()
 
+# Simpan model dan tokenizer
+if not os.path.exists('model_roberta'):
+    os.makedirs('model_roberta')
