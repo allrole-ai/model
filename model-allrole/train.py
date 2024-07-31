@@ -11,3 +11,6 @@ def filter_valid_rows(row):
     return len(row) == 2
 
 print("Nama kolom dalam DataFrame:", df.columns)
+print("Beberapa baris data:")
+print(df.head())
+
